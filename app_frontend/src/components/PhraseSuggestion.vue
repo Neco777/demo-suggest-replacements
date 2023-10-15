@@ -12,9 +12,6 @@ export default {
     props: {
         suggestion: Object
     },
-    methods: {
-        
-    }
 }
 </script>
 
