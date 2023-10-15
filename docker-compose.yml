@@ -1,6 +1,25 @@
 version: '3.5'
 
 services:
+  tensorflow-front:
+    build:
+      context: .
+      dockerfile: Dockerfile-UI
+    image: tensorflow-front
+    networks:
+      - internal
+      - external
+    ports:
+      #- "8080:8080"
+      - "5173:5173"
+      - "3010:3010"
+    volumes:
+      - ./app_frontend:/app:delegated
+    env_file:
+      - ./.env
+    stdin_open: true
+    tty: true
+
   tensorflow-back:
     build:
       context: .

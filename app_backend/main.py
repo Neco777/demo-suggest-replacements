@@ -1,10 +1,22 @@
 from fastapi import FastAPI
-print(dir())
+from fastapi.middleware.cors import CORSMiddleware
 from logic.semantic_replace import find_replacements
 
 app = FastAPI()
 
-print('started!');
+print('started!')
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
@@ -36,6 +48,21 @@ default_standard_phrases = [
 ]
 
 
-@app.get("/try-suggest")
+@app.get("/api/try-suggest")
 async def try_suggest(sentence = default_sentences, standard_phrases = default_standard_phrases):
     return find_replacements(sentence, standard_phrases, similarity_threshold=0.4)
+
+from typing import List
+from pydantic import BaseModel
+
+class SuggestRequest(BaseModel):
+    sentence: str
+    standard_phrases: List[str]
+
+@app.post("/api/try-suggest")
+async def try_suggest(suggestRequest: SuggestRequest):
+    return find_replacements(
+        suggestRequest.sentence,
+        suggestRequest.standard_phrases,
+        similarity_threshold=0.4,
+    )
