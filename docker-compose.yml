@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  tensorflow-back:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tensorflow-back
+    networks:
+      - internal
+      - external
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app_backend:/app_backend:delegated
+    env_file:
+      - ./.env
+    stdin_open: true
+    tty: true
+
+  tensorflow-jupyter:
+    profiles: ["disabled"]
+    build:
+      context: .
+      dockerfile: Dockerfile-jupyter
+    image: tensorflow-jupyter
+    networks:
+      - internal
+      - external
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./jupyter:/tf/jupyter:delegated
+    env_file:
+      - ./.env
+    stdin_open: true
+    tty: true
+
+networks:
+  internal:
+    driver: bridge
+  external:
+    name: demo-phrases
