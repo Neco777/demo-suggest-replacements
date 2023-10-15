@@ -1,6 +1,6 @@
 # About
 This is a demo solution requested as an tech interview trial task.
-The object of that is to develop a tool that analyses a given text and suggests improvements based on the similarity to a list of "standardised" phrases.
+The objective of that is to develop a tool that analyses a given text and suggests improvements based on the similarity to a list of "standardised" phrases.
 
 # Setup process
 For Windows:
