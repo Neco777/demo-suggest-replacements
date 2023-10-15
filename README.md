@@ -35,3 +35,6 @@ Overall I am not very satisfied with the results that my solution provides.
 1. It produces very close suggestions which a human needs to post-process.
 2. Some of the suggestions make no sense. E.g. it suggests to replace 'at our disposal' with 'utilize resources' with relatively high score 0.408 although the original phrase does not have any action/verb in it.
 3. The suggestions do not match the original phrase grammatically. I imagine we can somehow calculate that the original phrase is in past tense and apply the same grammatical rule to the suggestion. I think we can generate synonym phrase for each of the standard phrase (using the same model) in different grammatical forms and then scan thru the synonyms and chech if some of them give higher score than the original standard phrase. I guess I need to spend more time on this algorithm and try to improve it.
+
+
+![Screenshot](./content/screenshot1.png)
