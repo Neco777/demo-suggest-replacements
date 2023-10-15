@@ -1,15 +1,10 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
   <div class="page">
     <div class="source">
       <label>Text</label>
       <textarea v-model="sourceText" type="text" />
 
-      <label>Standard Phrases</label>
+      <label>Standard Phrases (one per line)</label>
       <textarea v-model="sourceStandardPhrasesRaw" placeholder="Put your phrases line by line"></textarea>
 
       <button @click="refreshData">Request suggestions</button>
@@ -22,7 +17,7 @@ import TheWelcome from './components/TheWelcome.vue'
         </div>
       </div>
       <div v-else>
-        No suggestions
+        Loading...
       </div>
     </div>
   </div>
