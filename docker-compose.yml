@@ -30,8 +30,8 @@ services:
       - external
     ports:
       - "8000:8000"
-    volumes:
-      - ./app_backend:/app_backend:delegated
+    # volumes:
+    #   - ./app_backend:/app_backend:delegated
     env_file:
       - ./.env
     stdin_open: true
